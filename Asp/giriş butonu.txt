@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class index : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Label1.Visible = true;
+        string kadi = TextBox1.Text;
+        string parola = TextBox2.Text;
+        string data = "Data Source=FURKAN\\SQLEXPRESS;Initial Catalog=hepsiburada;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(data);
+        baglan.Open();
+        SqlCommand cmd = new SqlCommand("Select * from uyeform where kadi='" + kadi + "' and parola='" + parola + "'", baglan);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if (dr.Read())
+        {
+            Label8.Visible = true;
+            Label4.Visible = true;
+            Label2.Visible = true;
+            Label3.Visible = true;
+            Label6.Visible = false;
+            Label7.Visible = true;
+            Label1.Text = ("Hoþgeldin" + ", " + kadi);
+        }
+        else
+        {
+
+            Label1.Text = "Hatalý Giriþ !!!!!";
+        }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+
+    }
+}

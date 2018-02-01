@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class haberekle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Label1.Visible = true;
+
+        string baslik = TextBox1.Text;
+        string haber = TextBox2.Text;
+        string foto = "~/RESÝMLER/" + FileUpload1.PostedFile.FileName;
+        string adres = "Data Source=FURKAN\\SQLEXPRESS;Initial Catalog=ahmetkaya;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(adres);
+        baglan.Open();
+        string komut = "insert into ahmetkayahaber (baslik,haber,foto) values('" + baslik + "','" + haber + "','" + foto + "')";
+        SqlCommand ekle = new SqlCommand(komut, baglan);
+        ekle.ExecuteNonQuery();
+       Label1.Text = "Haber Eklendi";
+        baglan.Close();
+    }
+}

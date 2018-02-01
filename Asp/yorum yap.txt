@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class yorum_yap : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string data = "Data Source=FURKAN\\SQLEXPRESS;Initial Catalog=yorumm;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(data);
+        string yorumcu = TextBox1.Text;
+        string yorumu = TextBox2.Text;
+
+        baglan.Open();
+
+        SqlCommand cmd = new SqlCommand("insert into yorumlar(yorumcu,yorumu) values('" + yorumcu + "','" + yorumu + "')", baglan);
+        cmd.ExecuteNonQuery();
+        Label1.Visible = true;
+        Label1.Text = "Yorumunuz Admin Onayýna Alýnmýþtýr.";
+        baglan.Close();
+    }
+}

@@ -1,0 +1,9 @@
+"Sinav" veritabaný adý altýnda;
+
+ÜYELER ÝÇÝN BÝR TABLO AÇIYORUZ ADI  "Uyeler"  bu tabloda kadi,parola,mail sütunlarý olacak hapsi varchar(50).
+
+HABERLER ÝÇÝN BÝR TABLO AÇIYORUZ  "Haberler" bu tabloda identity varsa haberid,baslik,haber,foto sütünlarý 
+olacak. Ýdentity yoksa sadece baslik,aciklama,foto (varchar(50),varchar(MAX),varchar(256)) olacak.
+
+'<%#Eval("baslik") %>' þeklinde haber ekleme eval kodlarý yazýlacak
+

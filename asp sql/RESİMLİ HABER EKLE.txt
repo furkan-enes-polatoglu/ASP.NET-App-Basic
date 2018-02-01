@@ -1,0 +1,17 @@
+using System.Data;
+using System.Data.SqlClient;
+
+        Label1.Visible = true;
+        string haberid = TextBox1.Text;
+        string baslik = TextBox2.Text;
+	string haber = TextBox3.Text;
+        string foto = "~/RESÝMLER/" + FileUpload1.PostedFile.FileName;
+        
+	string adres = "Data Source=FURKAN\\SQLEXPRESS;Initial Catalog=Sinav;Integrated Security=True";
+	SqlConnection baglan = new SqlConnection(adres);
+        baglan.Open();
+        string komut = "insert into SHaberler (haberid,baslik,haber,foto) values('"+haberid"','" + baslik + "','" + haber + "','" + foto + "')";
+        SqlCommand ekle = new SqlCommand(komut, baglan);
+        ekle.ExecuteNonQuery();
+        Label1.Text = "Haber Eklendi";
+        baglan.Close();

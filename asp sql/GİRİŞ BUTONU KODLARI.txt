@@ -1,0 +1,19 @@
+using System.Data;
+using System.Data.SqlClient;
+
+        Label1.Visible = true;
+        string kadi = TextBox1.Text;
+        string parola = TextBox2.Text;
+        string data = "Data Source=FURKAN\\SQLEXPRESS;Initial Catalog=Sinav;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(data);
+        baglan.Open();
+        SqlCommand cmd = new SqlCommand("Select * from Uyeler where kadi='" + kadi + "' and parola='" + parola + "'", baglan);
+        SqlDataReader dr = cmd.ExecuteReader();
+        if (dr.Read())
+        {
+            Label1.Text = ("Hoþgeldin" + ", " + kadi);
+        }
+        else
+        {
+            Label1.Text = "Hatalý Giriþ !!!!!";
+        }

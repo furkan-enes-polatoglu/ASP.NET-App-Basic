@@ -1,0 +1,17 @@
+ 	Label1.Visible = true;
+        string data = "Data Source=furkan\\sqlexpress;Initial Catalog=gazete;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(data);
+        baglan.Open();
+
+        string haberid = TextBox1.Text;
+        string haberbaslik = TextBox2.Text;
+        string haberyazisi = TextBox3.Text;
+        string yazar = TextBox4.Text;
+
+
+
+        SqlCommand ekle = new SqlCommand("insert into haber (haberid,haberbaslik,haberyazisi,yazar) values ('"+haberid+"','" + haberbaslik + "','" + haberyazisi + "','" + yazar + "')", baglan);
+        ekle.ExecuteNonQuery();
+        Label1.Text = "Haber Eklenmiþtir !";
+        baglan.Close();
+    }

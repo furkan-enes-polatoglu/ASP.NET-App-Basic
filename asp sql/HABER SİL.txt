@@ -1,0 +1,12 @@
+  using System.Data;
+using System.Data.SqlClient;
+
+	Label1.Visible = true;
+        string sil = TextBox1.Text;
+        string data = "Data Source=furkan\\sqlexpress;Initial Catalog=Sinav;Integrated Security=True";
+        SqlConnection baglan = new SqlConnection(data);
+        baglan.Open();
+        SqlCommand komut = new SqlCommand("delete from Haber where haberid='" + sil + "'", baglan);
+        komut.ExecuteNonQuery();
+        Label1.Text = "Haber Silindi !";
+        baglan.Close();
